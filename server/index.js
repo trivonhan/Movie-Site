@@ -3,9 +3,12 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const config = require("./config/key");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const mongoose = require("mongoose");
-const connect = mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+//const connect = mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true})
+const connect = mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
